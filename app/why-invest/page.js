@@ -203,9 +203,9 @@ export default function WhyInvestPage() {
           <ScrollReveal delay={0.2}>
             <div className={styles.comparisonTable}>
               <div className={styles.comparisonHeader}>
-                <div className={styles.comparisonFeature}>{t('whyInvest.feature')}</div>
-                <div className={styles.comparisonLarimar}>{t('whyInvest.larimarCity')}</div>
-                <div className={styles.comparisonOthers}>{t('whyInvest.otherInvestments')}</div>
+                <div className={styles.comparisonHeaderCell}>{t('whyInvest.feature')}</div>
+                <div className={styles.comparisonHeaderCell}>{t('whyInvest.larimarCity')}</div>
+                <div className={styles.comparisonHeaderCell}>{t('whyInvest.otherInvestments')}</div>
               </div>
               {comparisons.map((row, index) => (
                 <div key={index} className={styles.comparisonRow}>
