@@ -1,24 +1,15 @@
 'use client';
 import Link from 'next/link';
+import { useLanguage } from '@/contexts/LanguageContext';
 
-const footerLinks = {
-  explore: [
-    { label: 'The City', href: '/the-city' },
-    { label: 'City Concept', href: '/city-concept' },
-    { label: 'Properties', href: '/properties' },
-    { label: 'Why Invest', href: '/why-invest' },
-    { label: 'Phase I', href: '/phase-1' },
-    { label: 'Experience', href: '/experience' },
-  ],
-  properties: [
-    { label: 'Ocean View Residences', href: '/properties' },
-    { label: 'Garden Villas', href: '/properties' },
-    { label: 'Marina Townhouses', href: '/properties' },
-    { label: 'Sunset Residences', href: '/properties' },
-    { label: 'Paradise Towers', href: '/properties' },
-    { label: 'Breeze Towers', href: '/properties' },
-  ],
-};
+const propertyLinks = [
+  { label: 'Ocean View Residences', href: '/properties' },
+  { label: 'Garden Villas', href: '/properties' },
+  { label: 'Marina Townhouses', href: '/properties' },
+  { label: 'Sunset Residences', href: '/properties' },
+  { label: 'Paradise Towers', href: '/properties' },
+  { label: 'Breeze Towers', href: '/properties' },
+];
 
 const socials = [
   { label: 'Fb', ariaLabel: 'Facebook' },
@@ -28,6 +19,17 @@ const socials = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
+
+  const exploreLinks = [
+    { label: t('nav.theCity'), href: '/the-city' },
+    { label: t('nav.cityConcept'), href: '/city-concept' },
+    { label: t('nav.whyInvest'), href: '/why-invest' },
+    { label: t('nav.phaseI'), href: '/phase-1' },
+    { label: t('nav.experience'), href: '/experience' },
+    { label: t('nav.news'), href: '/news' },
+  ];
+
   return (
     <>
       <style>{`
@@ -118,9 +120,7 @@ export default function Footer() {
               <img src="/images/logo-white.png" alt="Larimar City" style={{ height: '55px', width: 'auto', objectFit: 'contain' }} />
             </div>
             <p style={{ fontSize: '0.875rem', lineHeight: 1.8, marginBottom: '24px', color: 'rgba(255,255,255,0.5)' }}>
-              The first smart city in the Caribbean. A unique destination in Punta Cana
-              combining luxury living, cutting-edge technology, and sustainable design
-              for 22,000+ homes.
+              {t('footer.brandDescription')}
             </p>
             <div style={{ display: 'flex', gap: '10px' }}>
               {socials.map((s) => (
@@ -139,9 +139,9 @@ export default function Footer() {
               letterSpacing: '2px',
               color: '#fff',
               marginBottom: '20px',
-            }}>Explore</h4>
+            }}>{t('footer.explore')}</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', listStyle: 'none' }}>
-              {footerLinks.explore.map((link) => (
+              {exploreLinks.map((link) => (
                 <li key={link.href + link.label}>
                   <Link href={link.href} className="footer-link">{link.label}</Link>
                 </li>
@@ -159,9 +159,9 @@ export default function Footer() {
               letterSpacing: '2px',
               color: '#fff',
               marginBottom: '20px',
-            }}>Properties</h4>
+            }}>{t('footer.properties')}</h4>
             <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px', listStyle: 'none' }}>
-              {footerLinks.properties.map((link) => (
+              {propertyLinks.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="footer-link">{link.label}</Link>
                 </li>
@@ -179,12 +179,12 @@ export default function Footer() {
               letterSpacing: '2px',
               color: '#fff',
               marginBottom: '20px',
-            }}>Contact</h4>
+            }}>{t('footer.contactTitle')}</h4>
             {[
-              { icon: '📍', text: 'Punta Cana, Dominican Republic' },
+              { icon: '📍', text: t('footer.address') },
               { icon: '📧', text: 'info@larimarcity.com' },
               { icon: '📞', text: '+1 (809) 000-0000' },
-              { icon: '🕐', text: 'Mon - Fri: 9:00 - 18:00' },
+              { icon: '🕐', text: t('footer.hours') },
             ].map((item) => (
               <div key={item.text} style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '16px', fontSize: '0.875rem' }}>
                 <span style={{ fontSize: '1rem', flexShrink: 0 }}>{item.icon}</span>
@@ -209,11 +209,11 @@ export default function Footer() {
             fontSize: '0.75rem',
             color: 'rgba(255,255,255,0.35)',
           }}>
-            <span>&copy; {new Date().getFullYear()} Larimar City & Resort. All rights reserved.</span>
+            <span>&copy; {new Date().getFullYear()} {t('footer.copyright')}</span>
             <div style={{ display: 'flex', gap: '24px' }}>
-              <a href="#" className="footer-bottom-link">Privacy Policy</a>
-              <a href="#" className="footer-bottom-link">Legal Notice</a>
-              <a href="#" className="footer-bottom-link">Cookies</a>
+              <a href="#" className="footer-bottom-link">{t('footer.privacyPolicy')}</a>
+              <a href="#" className="footer-bottom-link">{t('footer.legalNotice')}</a>
+              <a href="#" className="footer-bottom-link">{t('footer.cookies')}</a>
             </div>
           </div>
         </div>

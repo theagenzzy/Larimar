@@ -5,11 +5,14 @@ import Link from 'next/link';
 import { allNewsArticles } from '@/data/news';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
 
-const categories = ['All', 'Development', 'Technology', 'Sustainability', 'Lifestyle'];
+const categoryKeys = ['all', 'development', 'technology', 'sustainability', 'lifestyle'];
+const categoryValues = ['All', 'Development', 'Technology', 'Sustainability', 'Lifestyle'];
 
 export default function NewsPage() {
+  const { t } = useLanguage();
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filtered = activeCategory === 'All'
@@ -30,11 +33,11 @@ export default function NewsPage() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <ScrollReveal direction="up">
-            <h1 className={styles.heroTitle}>News & Insights</h1>
+            <h1 className={styles.heroTitle}>{t('news.pageTitle')}</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
             <p className={styles.heroSubtitle}>
-              Stay up to date with the latest developments, innovations, and lifestyle stories from Larimar City & Resort.
+              {t('news.pageSubtitle')}
             </p>
           </ScrollReveal>
         </div>
@@ -44,13 +47,13 @@ export default function NewsPage() {
       <section className={styles.filterSection}>
         <div className={styles.container}>
           <div className={styles.tabs}>
-            {categories.map((cat) => (
+            {categoryKeys.map((key, index) => (
               <button
-                key={cat}
-                className={`${styles.tab} ${activeCategory === cat ? styles.tabActive : ''}`}
-                onClick={() => setActiveCategory(cat)}
+                key={key}
+                className={`${styles.tab} ${activeCategory === categoryValues[index] ? styles.tabActive : ''}`}
+                onClick={() => setActiveCategory(categoryValues[index])}
               >
-                {cat}
+                {t(`news.${key}`)}
               </button>
             ))}
           </div>
@@ -72,7 +75,7 @@ export default function NewsPage() {
                     <h2 className={styles.featuredTitle}>{featured.title}</h2>
                     <p className={styles.featuredExcerpt}>{featured.excerpt}</p>
                     <span className={styles.readMoreBtn}>
-                      Read Full Article
+                      {t('news.readFullArticle')}
                       <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -102,7 +105,7 @@ export default function NewsPage() {
                         <h3 className={styles.cardTitle}>{article.title}</h3>
                         <p className={styles.cardExcerpt}>{article.excerpt}</p>
                         <span className={styles.readMore}>
-                          Read More
+                          {t('news.readMore')}
                           <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
                             <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
@@ -122,18 +125,18 @@ export default function NewsPage() {
         <div className={styles.container}>
           <ScrollReveal direction="up">
             <div className={styles.newsletterInner}>
-              <h2 className={styles.newsletterTitle}>Subscribe to Our Newsletter</h2>
+              <h2 className={styles.newsletterTitle}>{t('news.newsletterTitle')}</h2>
               <p className={styles.newsletterText}>
-                Get the latest news, project updates, and exclusive investment opportunities delivered straight to your inbox.
+                {t('news.newsletterText')}
               </p>
               <form className={styles.newsletterForm} onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
-                  placeholder="Enter your email address"
+                  placeholder={t('news.emailPlaceholder')}
                   className={styles.newsletterInput}
                 />
                 <Button variant="gold" size="md" onClick={(e) => e.preventDefault()}>
-                  Subscribe
+                  {t('news.subscribe')}
                 </Button>
               </form>
             </div>

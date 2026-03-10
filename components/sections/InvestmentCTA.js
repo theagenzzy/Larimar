@@ -3,8 +3,10 @@
 import styles from './InvestmentCTA.module.css';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function InvestmentCTA() {
+  const { t } = useLanguage();
   return (
     <section className={styles.section}>
       <div className={styles.background} />
@@ -16,14 +18,12 @@ export default function InvestmentCTA() {
         </ScrollReveal>
 
         <ScrollReveal delay={0.1}>
-          <h2 className={styles.title}>Invest in the Future of Caribbean Living</h2>
+          <h2 className={styles.title}>{t('investment.title')}</h2>
         </ScrollReveal>
 
         <ScrollReveal delay={0.2}>
           <p className={styles.subtitle}>
-            Secure your investment in one of the most promising real estate developments 
-            in the Caribbean. With projected ROI of up to 12% annually and guaranteed 
-            rental income programs, Larimar City offers both lifestyle and financial security.
+            {t('investment.subtitle')}
           </p>
         </ScrollReveal>
 
@@ -34,10 +34,10 @@ export default function InvestmentCTA() {
         <ScrollReveal delay={0.4}>
           <div className={styles.ctas}>
             <Button href="/investment" variant="gold" size="lg">
-              Why Invest
+              {t('investment.whyInvest')}
             </Button>
             <Button href="/contact" variant="outline" size="lg">
-              Contact Us
+              {t('investment.contactUs')}
             </Button>
           </div>
         </ScrollReveal>

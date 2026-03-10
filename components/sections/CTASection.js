@@ -2,18 +2,20 @@
 
 import styles from './CTASection.module.css';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function CTASection() {
+  const { t } = useLanguage();
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
-        <h2 className={styles.title}>Ready to Start Your Caribbean Journey?</h2>
+        <h2 className={styles.title}>{t('cta.title')}</h2>
         <p className={styles.subtitle}>
-          Connect with our team to explore available properties, schedule a tour, 
-          or learn about investment opportunities at Larimar City.
+          {t('cta.subtitle')}
         </p>
         <Button href="/contact" variant="secondary" size="lg">
-          Contact Us Today
+          {t('cta.contactUsToday')}
         </Button>
       </div>
     </section>

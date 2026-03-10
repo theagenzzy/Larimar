@@ -4,20 +4,22 @@ import { useParams } from 'next/navigation';
 import { allProperties } from '@/data/properties';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
 import { useState } from 'react';
 
 export default function PropertyDetailPage() {
   const { slug } = useParams();
+  const { t } = useLanguage();
   const property = allProperties.find((p) => p.slug === slug);
   const [activeImage, setActiveImage] = useState(0);
 
   if (!property) {
     return (
       <div className={styles.notFound}>
-        <h1>Property Not Found</h1>
-        <p>The property you are looking for does not exist.</p>
-        <Button href="/properties" variant="primary" size="lg">Back to Properties</Button>
+        <h1>{t('propertyDetail.notFound')}</h1>
+        <p>{t('propertyDetail.notFoundText')}</p>
+        <Button href="/properties" variant="primary" size="lg">{t('propertyDetail.backToProperties')}</Button>
       </div>
     );
   }
@@ -46,7 +48,7 @@ export default function PropertyDetailPage() {
           </ScrollReveal>
           <ScrollReveal delay={0.3}>
             <div className={styles.heroScroll}>
-              <span>Explore</span>
+              <span>{t('propertyDetail.explore')}</span>
               <div className={styles.heroScrollLine} />
             </div>
           </ScrollReveal>
@@ -57,9 +59,9 @@ export default function PropertyDetailPage() {
       <section className={styles.statsStrip}>
         <div className={styles.statsInner}>
           {[
-            { value: property.bedrooms, label: 'Bedrooms' },
-            { value: property.bathrooms, label: 'Bathrooms' },
-            { value: property.area, label: 'Living Area' },
+            { value: property.bedrooms, label: t('propertyDetail.bedrooms') },
+            { value: property.bathrooms, label: t('propertyDetail.bathrooms') },
+            { value: property.area, label: t('propertyDetail.livingArea') },
             ...property.highlights,
           ].map((item, i, arr) => (
             <div key={i} className={styles.statItem}>
@@ -79,11 +81,11 @@ export default function PropertyDetailPage() {
           <div className={styles.storyGrid}>
             <ScrollReveal direction="left">
               <div className={styles.storyContent}>
-                <span className={styles.label}>The Vision</span>
+                <span className={styles.label}>{t('propertyDetail.theVision')}</span>
                 <h2 className={styles.storyTitle}>{property.name}</h2>
                 <p className={styles.storyText}>{property.longDescription}</p>
                 <div className={styles.storyActions}>
-                  <Button href="/contact" variant="gold" size="lg">Request Information</Button>
+                  <Button href="/contact" variant="gold" size="lg">{t('propertyDetail.requestInfo')}</Button>
                 </div>
               </div>
             </ScrollReveal>
@@ -124,8 +126,8 @@ export default function PropertyDetailPage() {
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.featureHeader}>
-              <span className={styles.label}>Lifestyle</span>
-              <h2 className={styles.featureTitle}>Features &amp; Amenities</h2>
+              <span className={styles.label}>{t('propertyDetail.lifestyle')}</span>
+              <h2 className={styles.featureTitle}>{t('propertyDetail.featuresAmenities')}</h2>
             </div>
           </ScrollReveal>
           <div className={styles.featuresGrid}>
@@ -150,10 +152,10 @@ export default function PropertyDetailPage() {
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.investHeader}>
-              <span className={styles.labelLight}>Smart Investment</span>
-              <h2 className={styles.investTitle}>Why This Property</h2>
+              <span className={styles.labelLight}>{t('propertyDetail.smartInvestment')}</span>
+              <h2 className={styles.investTitle}>{t('propertyDetail.whyThisProperty')}</h2>
               <p className={styles.investSubtitle}>
-                A premium investment opportunity in the Caribbean&apos;s most ambitious smart city development.
+                {t('propertyDetail.whyThisPropertySub')}
               </p>
             </div>
           </ScrollReveal>
@@ -176,13 +178,13 @@ export default function PropertyDetailPage() {
           <ScrollReveal>
             <div className={styles.ctaCard}>
               <div className={styles.ctaContent}>
-                <h2 className={styles.ctaTitle}>Interested in {property.name}?</h2>
+                <h2 className={styles.ctaTitle}>{t('propertyDetail.interestedIn')} {property.name}?</h2>
                 <p className={styles.ctaText}>
-                  Schedule a private consultation or virtual tour. Our investment advisors are ready to guide you through every step.
+                  {t('propertyDetail.interestedText')}
                 </p>
                 <div className={styles.ctaButtons}>
-                  <Button href="/contact" variant="gold" size="lg">Schedule a Visit</Button>
-                  <Button href="/properties" variant="outlineDark" size="lg">All Properties</Button>
+                  <Button href="/contact" variant="gold" size="lg">{t('propertyDetail.scheduleVisit')}</Button>
+                  <Button href="/properties" variant="outlineDark" size="lg">{t('propertyDetail.allProperties')}</Button>
                 </div>
               </div>
             </div>

@@ -1,61 +1,9 @@
+'use client';
+
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
-
-const experiences = [
-  {
-    label: 'Recreation',
-    title: 'Golf & Country Club',
-    desc: 'An 18-hole championship golf course spanning 60 hectares of meticulously sculpted Caribbean terrain. Designed for players of all levels, from beginners to seasoned professionals, the Larimar Golf & Country Club offers a world-class experience surrounded by tropical beauty.',
-    image: '/images/golf-country-club.webp',
-    features: [
-      '18-hole championship course',
-      '60 hectares of sculpted landscape',
-      'Clubhouse with restaurant and pro shop',
-      'Golf academy and professional coaching',
-      'Practice ranges and putting greens',
-    ],
-  },
-  {
-    label: 'Waterfront',
-    title: 'Beach & Water',
-    desc: 'A 3-kilometer artificial crystal-clear lagoon beach, complemented by a Mediterranean-inspired promenade lined with palms, boutiques, and open-air dining. Enjoy an unparalleled waterfront lifestyle with water sports, sailing, and beachside relaxation.',
-    image: '/images/gallery-2.jpg',
-    features: [
-      '3km crystal-clear lagoon beach',
-      'Mediterranean waterfront promenade',
-      'Water sports center with equipment rental',
-      'Beachside dining and cocktail bars',
-      'Sunset sailing and catamaran tours',
-    ],
-  },
-  {
-    label: 'Wellbeing',
-    title: 'Wellness & Spa',
-    desc: 'State-of-the-art fitness facilities, a full-service luxury spa, meditation gardens, and wellness programs designed using principles of neuroarchitecture. Every space has been engineered to promote physical health, mental clarity, and deep relaxation.',
-    image: '/images/slide-4.jpg',
-    features: [
-      'Full-service luxury spa with treatment rooms',
-      'Modern gymnasium with personal trainers',
-      'Yoga and meditation pavilions',
-      'Neuroarchitecture-designed wellness spaces',
-      'Hydrotherapy circuits and thermal baths',
-    ],
-  },
-  {
-    label: 'Lifestyle',
-    title: 'Dining & Entertainment',
-    desc: 'A vibrant cultural and culinary scene featuring international restaurants, artisan bars, a contemporary shopping mall, and a calendar of cultural events, live music, and community celebrations that bring the Larimar community together.',
-    image: '/images/gallery-3.jpg',
-    features: [
-      'International fine-dining restaurants',
-      'Artisan cocktail bars and wine lounges',
-      'Contemporary shopping mall',
-      'Open-air amphitheater for events',
-      'Art galleries and cultural programming',
-    ],
-  },
-];
 
 const galleryItems = [
   { height: 320, image: '/images/farallon.jpg' },
@@ -70,25 +18,82 @@ const galleryItems = [
 ];
 
 export default function ExperiencePage() {
+  const { t } = useLanguage();
+
+  const experiences = [
+    {
+      label: t('experience.recreationLabel'),
+      title: t('experience.golfTitle'),
+      desc: t('experience.golfDesc'),
+      image: '/images/golf-country-club.webp',
+      features: [
+        t('experience.golfFeature1'),
+        t('experience.golfFeature2'),
+        t('experience.golfFeature3'),
+        t('experience.golfFeature4'),
+        t('experience.golfFeature5'),
+      ],
+    },
+    {
+      label: t('experience.waterfrontLabel'),
+      title: t('experience.beachTitle'),
+      desc: t('experience.beachDesc'),
+      image: '/images/gallery-2.jpg',
+      features: [
+        t('experience.beachFeature1'),
+        t('experience.beachFeature2'),
+        t('experience.beachFeature3'),
+        t('experience.beachFeature4'),
+        t('experience.beachFeature5'),
+      ],
+    },
+    {
+      label: t('experience.wellbeingLabel'),
+      title: t('experience.wellnessTitle'),
+      desc: t('experience.wellnessDesc'),
+      image: '/images/slide-4.jpg',
+      features: [
+        t('experience.wellnessFeature1'),
+        t('experience.wellnessFeature2'),
+        t('experience.wellnessFeature3'),
+        t('experience.wellnessFeature4'),
+        t('experience.wellnessFeature5'),
+      ],
+    },
+    {
+      label: t('experience.lifestyleLabel'),
+      title: t('experience.diningTitle'),
+      desc: t('experience.diningDesc'),
+      image: '/images/gallery-3.jpg',
+      features: [
+        t('experience.diningFeature1'),
+        t('experience.diningFeature2'),
+        t('experience.diningFeature3'),
+        t('experience.diningFeature4'),
+        t('experience.diningFeature5'),
+      ],
+    },
+  ];
+
   return (
     <>
       {/* Hero */}
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <ScrollReveal>
-            <span className={styles.heroLabel}>Discover a New Way of Living</span>
+            <span className={styles.heroLabel}>{t('experience.label')}</span>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
-            <h1 className={styles.heroTitle}>The Larimar<br />Experience</h1>
+            <h1 className={styles.heroTitle}>{t('experience.title')}</h1>
           </ScrollReveal>
           <ScrollReveal delay={0.4}>
             <p className={styles.heroSubtitle}>
-              An immersive lifestyle where luxury, nature, and innovation converge in the heart of the Caribbean.
+              {t('experience.subtitle')}
             </p>
           </ScrollReveal>
         </div>
         <div className={styles.heroScroll}>
-          <span>Explore</span>
+          <span>{t('experience.explore')}</span>
           <div className={styles.scrollLine} />
         </div>
       </section>
@@ -145,16 +150,16 @@ export default function ExperiencePage() {
             </div>
           </ScrollReveal>
           <ScrollReveal delay={0.15}>
-            <h2 className={styles.virtualTourTitle}>Take a Virtual Tour</h2>
+            <h2 className={styles.virtualTourTitle}>{t('experience.virtualTourTitle')}</h2>
           </ScrollReveal>
           <ScrollReveal delay={0.25}>
             <p className={styles.virtualTourText}>
-              Explore Larimar City & Resort from anywhere in the world. Walk through our amenities, experience the views, and envision your life in the Caribbean&apos;s first smart city.
+              {t('experience.virtualTourText')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.35}>
             <Button href="/contact" variant="gold" size="lg">
-              Start Virtual Tour
+              {t('experience.startVirtualTour')}
             </Button>
           </ScrollReveal>
         </div>
@@ -164,10 +169,10 @@ export default function ExperiencePage() {
       <section className={styles.gallery}>
         <ScrollReveal>
           <div className={styles.sectionHeader}>
-            <p className={styles.sectionLabel}>Lifestyle Gallery</p>
-            <h2 className={styles.sectionTitle}>Life at Larimar</h2>
+            <p className={styles.sectionLabel}>{t('experience.galleryLabel')}</p>
+            <h2 className={styles.sectionTitle}>{t('experience.galleryTitle')}</h2>
             <p className={styles.sectionSubtitle}>
-              A glimpse into the extraordinary lifestyle that awaits residents and visitors of Larimar City & Resort.
+              {t('experience.gallerySubtitle')}
             </p>
           </div>
         </ScrollReveal>
@@ -196,16 +201,16 @@ export default function ExperiencePage() {
       <section className={styles.cta}>
         <ScrollReveal>
           <div className={styles.ctaInner}>
-            <h2 className={styles.ctaTitle}>Ready to Experience Larimar?</h2>
+            <h2 className={styles.ctaTitle}>{t('experience.ctaTitle')}</h2>
             <p className={styles.ctaText}>
-              Connect with our team to learn more about life in the Caribbean&apos;s most innovative city. Schedule a visit, request information, or begin your journey today.
+              {t('experience.ctaText')}
             </p>
             <div className={styles.ctaButtons}>
               <Button href="/contact" variant="primary" size="lg">
-                Get in Touch
+                {t('experience.getInTouch')}
               </Button>
               <Button href="/properties" variant="outlineDark" size="lg">
-                Explore Properties
+                {t('experience.exploreProperties')}
               </Button>
             </div>
           </div>

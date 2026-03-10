@@ -5,19 +5,21 @@ import Link from 'next/link';
 import { allNewsArticles } from '@/data/news';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
 
 export default function NewsDetailPage() {
   const { slug } = useParams();
+  const { t } = useLanguage();
   const article = allNewsArticles.find((a) => a.slug === slug);
   const currentIndex = allNewsArticles.findIndex((a) => a.slug === slug);
 
   if (!article) {
     return (
       <div className={styles.notFound}>
-        <h1>Article Not Found</h1>
-        <p>The article you are looking for does not exist.</p>
-        <Button href="/news" variant="primary" size="lg">Back to News</Button>
+        <h1>{t('newsDetail.notFound')}</h1>
+        <p>{t('newsDetail.notFoundText')}</p>
+        <Button href="/news" variant="primary" size="lg">{t('newsDetail.backToNews')}</Button>
       </div>
     );
   }
@@ -47,7 +49,7 @@ export default function NewsDetailPage() {
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M19 12H5M12 19l-7-7 7-7" />
               </svg>
-              Back to News
+              {t('newsDetail.backToNews')}
             </Link>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
@@ -96,7 +98,7 @@ export default function NewsDetailPage() {
               <span className={styles.tag}>Caribbean</span>
             </div>
             <div className={styles.shareSection}>
-              <span className={styles.shareLabel}>Share this article</span>
+              <span className={styles.shareLabel}>{t('newsDetail.shareArticle')}</span>
               <div className={styles.shareButtons}>
                 <button className={styles.shareBtn} aria-label="Share on Twitter">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -122,7 +124,7 @@ export default function NewsDetailPage() {
                 <Link href={`/news/${prevArticle.slug}`} className={styles.navCard}>
                   <span className={styles.navDirection}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-                    Previous Article
+                    {t('newsDetail.previousArticle')}
                   </span>
                   <span className={styles.navTitle}>{prevArticle.title}</span>
                 </Link>
@@ -130,7 +132,7 @@ export default function NewsDetailPage() {
               {nextArticle ? (
                 <Link href={`/news/${nextArticle.slug}`} className={`${styles.navCard} ${styles.navCardNext}`}>
                   <span className={styles.navDirection}>
-                    Next Article
+                    {t('newsDetail.nextArticle')}
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                   </span>
                   <span className={styles.navTitle}>{nextArticle.title}</span>
@@ -146,7 +148,7 @@ export default function NewsDetailPage() {
         <section className={styles.relatedSection}>
           <div className={styles.container}>
             <ScrollReveal>
-              <h2 className={styles.relatedTitle}>Related Articles</h2>
+              <h2 className={styles.relatedTitle}>{t('newsDetail.relatedTitle')}</h2>
             </ScrollReveal>
             <div className={styles.relatedGrid}>
               {related.map((rel, i) => (
@@ -173,13 +175,13 @@ export default function NewsDetailPage() {
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.ctaCard}>
-              <h2 className={styles.ctaTitle}>Stay Informed</h2>
+              <h2 className={styles.ctaTitle}>{t('newsDetail.stayInformed')}</h2>
               <p className={styles.ctaText}>
-                Subscribe to our newsletter for the latest news, project updates, and exclusive investment opportunities from Larimar City.
+                {t('newsDetail.stayInformedText')}
               </p>
               <div className={styles.ctaButtons}>
-                <Button href="/contact" variant="gold" size="lg">Contact Us</Button>
-                <Button href="/news" variant="outline" size="lg">All Articles</Button>
+                <Button href="/contact" variant="gold" size="lg">{t('newsDetail.contactUs')}</Button>
+                <Button href="/news" variant="outline" size="lg">{t('newsDetail.allArticles')}</Button>
               </div>
             </div>
           </ScrollReveal>

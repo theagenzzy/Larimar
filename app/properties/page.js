@@ -5,11 +5,14 @@ import Link from 'next/link';
 import { allProperties } from '@/data/properties';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
 
-const filterTypes = ['All', 'Luxury Apartment', 'Villa', 'Townhouse'];
+const filterKeys = ['all', 'luxuryApartment', 'villa', 'townhouse'];
+const filterTypeValues = ['All', 'Luxury Apartment', 'Villa', 'Townhouse'];
 
 export default function PropertiesPage() {
+  const { t } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
 
   const filteredProperties =
@@ -24,16 +27,14 @@ export default function PropertiesPage() {
         <div className={styles.heroOverlay} />
         <div className={styles.heroContent}>
           <ScrollReveal>
-            <span className={styles.heroLabel}>Real Estate Portfolio</span>
+            <span className={styles.heroLabel}>{t('properties.heroLabel')}</span>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
-            <h1 className={styles.heroTitle}>Our Properties</h1>
+            <h1 className={styles.heroTitle}>{t('properties.heroTitle')}</h1>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <p className={styles.heroSubtitle}>
-              Explore a curated collection of luxury residences in the Caribbean&apos;s first smart
-              city. From modern apartments to spacious villas, find the perfect property for your
-              lifestyle or investment.
+              {t('properties.heroSubtitle')}
             </p>
           </ScrollReveal>
         </div>
@@ -44,13 +45,13 @@ export default function PropertiesPage() {
         <div className={styles.container}>
           <ScrollReveal>
             <div className={styles.filterBar}>
-              {filterTypes.map((type) => (
+              {filterKeys.map((key, index) => (
                 <button
-                  key={type}
-                  className={`${styles.filterBtn} ${activeFilter === type ? styles.filterBtnActive : ''}`}
-                  onClick={() => setActiveFilter(type)}
+                  key={key}
+                  className={`${styles.filterBtn} ${activeFilter === filterTypeValues[index] ? styles.filterBtnActive : ''}`}
+                  onClick={() => setActiveFilter(filterTypeValues[index])}
                 >
-                  {type}
+                  {t(`properties.${key}`)}
                 </button>
               ))}
             </div>
@@ -77,11 +78,11 @@ export default function PropertiesPage() {
                         <div className={styles.propertyMeta}>
                           <div className={styles.metaItem}>
                             <span className={styles.metaIcon}>&#9632;</span>
-                            <span>{property.bedrooms} Beds</span>
+                            <span>{property.bedrooms} {t('properties.beds')}</span>
                           </div>
                           <div className={styles.metaItem}>
                             <span className={styles.metaIcon}>&#9650;</span>
-                            <span>{property.bathrooms} Baths</span>
+                            <span>{property.bathrooms} {t('properties.baths')}</span>
                           </div>
                           <div className={styles.metaItem}>
                             <span className={styles.metaIcon}>&#9674;</span>
@@ -90,7 +91,7 @@ export default function PropertiesPage() {
                         </div>
                         <div className={styles.propertyFooter}>
                           <span className={styles.propertyPrice}>{property.price}</span>
-                          <span className={styles.viewDetails}>View Details</span>
+                          <span className={styles.viewDetails}>{t('properties.viewDetails')}</span>
                         </div>
                       </div>
                     </div>
@@ -101,13 +102,12 @@ export default function PropertiesPage() {
           ) : (
             <div className={styles.emptyState}>
               <div className={styles.emptyIcon}>&#128269;</div>
-              <h3 className={styles.emptyTitle}>No properties found</h3>
+              <h3 className={styles.emptyTitle}>{t('properties.noProperties')}</h3>
               <p className={styles.emptyText}>
-                There are no properties matching the selected filter. Try selecting a different
-                category.
+                {t('properties.noPropertiesText')}
               </p>
               <Button onClick={() => setActiveFilter('All')} variant="outlineDark" size="md">
-                Show All Properties
+                {t('properties.showAll')}
               </Button>
             </div>
           )}
@@ -119,21 +119,20 @@ export default function PropertiesPage() {
         <div className={styles.ctaOverlay} />
         <div className={styles.ctaContent}>
           <ScrollReveal>
-            <h2 className={styles.ctaTitle}>Find Your Dream Property</h2>
+            <h2 className={styles.ctaTitle}>{t('properties.ctaTitle')}</h2>
           </ScrollReveal>
           <ScrollReveal delay={0.1}>
             <p className={styles.ctaText}>
-              Can&apos;t find exactly what you&apos;re looking for? Our team of experts is ready to
-              help you find the perfect property that matches your needs and investment goals.
+              {t('properties.ctaText')}
             </p>
           </ScrollReveal>
           <ScrollReveal delay={0.2}>
             <div className={styles.ctaButtons}>
               <Button href="/contact" variant="gold" size="lg">
-                Contact Our Team
+                {t('properties.contactOurTeam')}
               </Button>
               <Button href="/why-invest" variant="outline" size="lg">
-                Why Invest
+                {t('properties.whyInvest')}
               </Button>
             </div>
           </ScrollReveal>

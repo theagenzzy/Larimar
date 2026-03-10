@@ -3,6 +3,7 @@
 import styles from './NewsPreview.module.css';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import { newsArticles } from '@/data/stats';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const newsImages = [
   '/images/slide-2.jpg',
@@ -20,6 +21,7 @@ function formatDate(dateStr) {
 }
 
 export default function NewsPreview() {
+  const { t } = useLanguage();
   const articles = newsArticles.slice(0, 3);
 
   return (
@@ -27,8 +29,8 @@ export default function NewsPreview() {
       <div className={styles.container}>
         <ScrollReveal>
           <div className={styles.header}>
-            <span className={styles.label}>NEWS</span>
-            <h2 className={styles.title}>Latest News</h2>
+            <span className={styles.label}>{t('newsPreview.label')}</span>
+            <h2 className={styles.title}>{t('newsPreview.title')}</h2>
           </div>
         </ScrollReveal>
 
@@ -48,7 +50,7 @@ export default function NewsPreview() {
                   <h3 className={styles.articleTitle}>{article.title}</h3>
                   <p className={styles.excerpt}>{article.excerpt}</p>
                   <a href={`/news/${article.slug}`} className={styles.readMore}>
-                    Read More
+                    {t('newsPreview.readMore')}
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M3 8h10M9 4l4 4-4 4" />
                     </svg>

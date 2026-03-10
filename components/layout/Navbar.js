@@ -2,8 +2,24 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { navigation } from '@/data/navigation';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Navbar() {
+  const { t } = useLanguage();
+
+  const navLabelKeys = {
+    'The City': 'nav.theCity',
+    'Discover Larimar': 'nav.discoverLarimar',
+    'City Concept': 'nav.cityConcept',
+    'Phase I': 'nav.phaseI',
+    'Properties': 'nav.properties',
+    'Why Invest': 'nav.whyInvest',
+    'Experience': 'nav.experience',
+    'News': 'nav.news',
+    'Contact': 'nav.contact',
+  };
+  const navT = (label) => navLabelKeys[label] ? t(navLabelKeys[label]) : label;
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
@@ -197,7 +213,7 @@ export default function Navbar() {
             {navigation.map((item) => (
               <li key={item.href} className="nav-item" style={{ position: 'relative' }}>
                 <Link href={item.href} className="nav-link" style={linkStyle}>
-                  {item.label}
+                  {navT(item.label)}
                   {item.children && (
                     <span className="nav-arrow" style={{ fontSize: '0.55rem', transition: 'transform 0.2s ease' }}>&#9660;</span>
                   )}
@@ -206,7 +222,7 @@ export default function Navbar() {
                   <ul className="nav-dropdown">
                     {item.children.map((child) => (
                       <li key={child.href}>
-                        <Link href={child.href} className="nav-dropdown-link">{child.label}</Link>
+                        <Link href={child.href} className="nav-dropdown-link">{navT(child.label)}</Link>
                       </li>
                     ))}
                   </ul>
@@ -217,7 +233,7 @@ export default function Navbar() {
 
           {/* Desktop CTA */}
           <Link href="/contact" className="nav-desktop-cta nav-cta" style={ctaStyle}>
-            Invest Now
+            {t('nav.investNow')}
           </Link>
 
           {/* Hamburger */}
@@ -252,7 +268,7 @@ export default function Navbar() {
                 style={mobileLinkStyle}
                 onClick={() => setIsMobileOpen(false)}
               >
-                {item.label}
+                {navT(item.label)}
               </Link>
             ))}
             <Link
@@ -261,7 +277,7 @@ export default function Navbar() {
               style={{ ...ctaStyle, marginTop: '16px' }}
               onClick={() => setIsMobileOpen(false)}
             >
-              Invest Now
+              {t('nav.investNow')}
             </Link>
           </div>
         </div>

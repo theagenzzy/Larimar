@@ -6,6 +6,7 @@ import Card from '@/components/ui/Card';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
 import { properties } from '@/data/properties';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const propertyImages = [
   '/images/horizon-view.webp',
@@ -14,6 +15,7 @@ const propertyImages = [
 ];
 
 export default function FeaturedProjects() {
+  const { t } = useLanguage();
   const featured = properties.slice(0, 3);
 
   return (
@@ -21,8 +23,8 @@ export default function FeaturedProjects() {
       <div className={styles.container}>
         <ScrollReveal>
           <div className={styles.header}>
-            <span className={styles.label}>PROPERTIES</span>
-            <h2 className={styles.title}>Find Your Dream Home</h2>
+            <span className={styles.label}>{t('featured.label')}</span>
+            <h2 className={styles.title}>{t('featured.title')}</h2>
           </div>
         </ScrollReveal>
 
@@ -41,13 +43,13 @@ export default function FeaturedProjects() {
                     <h3 className={styles.propertyName}>{property.name}</h3>
                     <p className={styles.propertyDesc}>{property.description}</p>
                     <div className={styles.propertyMeta}>
-                      <span>{property.bedrooms} Bed</span>
-                      <span>{property.bathrooms} Bath</span>
+                      <span>{property.bedrooms} {t('featured.bed')}</span>
+                      <span>{property.bathrooms} {t('featured.bath')}</span>
                       <span>{property.area}</span>
                     </div>
                     <div className={styles.cardFooter}>
                       <span className={styles.price}>{property.price}</span>
-                      <span className={styles.viewDetails}>View Details</span>
+                      <span className={styles.viewDetails}>{t('featured.viewDetails')}</span>
                     </div>
                   </div>
                 </Card>
@@ -59,7 +61,7 @@ export default function FeaturedProjects() {
         <ScrollReveal delay={0.3}>
           <div className={styles.viewAll}>
             <Button href="/properties" variant="gold" size="md">
-              View All Properties
+              {t('featured.viewAll')}
             </Button>
           </div>
         </ScrollReveal>

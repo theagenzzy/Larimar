@@ -5,51 +5,54 @@ import { faqData } from '@/data/stats';
 import ScrollReveal from '@/components/ui/ScrollReveal';
 import Button from '@/components/ui/Button';
 import AccordionFAQ from '@/components/ui/AccordionFAQ';
+import { useLanguage } from '@/contexts/LanguageContext';
 import styles from './page.module.css';
 
-const contactInfo = [
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
-        <circle cx="12" cy="10" r="3" />
-      </svg>
-    ),
-    label: 'Address',
-    value: 'Punta Cana, Dominican Republic',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M22 4l-10 8L2 4" />
-      </svg>
-    ),
-    label: 'Email',
-    value: 'info@larimarcity.com',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-      </svg>
-    ),
-    label: 'Phone',
-    value: '+1 809 000 0000',
-  },
-  {
-    icon: (
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10" />
-        <path d="M12 6v6l4 2" />
-      </svg>
-    ),
-    label: 'Hours',
-    value: 'Mon - Fri, 9:00 AM - 6:00 PM',
-  },
-];
-
 export default function ContactPage() {
+  const { t } = useLanguage();
+
+  const contactInfo = [
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
+          <circle cx="12" cy="10" r="3" />
+        </svg>
+      ),
+      label: t('contact.addressLabel'),
+      value: t('contact.addressValue'),
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M22 4l-10 8L2 4" />
+        </svg>
+      ),
+      label: t('contact.emailLabel'),
+      value: 'info@larimarcity.com',
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.86 19.86 0 01-8.63-3.07 19.5 19.5 0 01-6-6A19.86 19.86 0 012.12 4.18 2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+        </svg>
+      ),
+      label: t('contact.phoneLabel'),
+      value: t('contact.phoneValue'),
+    },
+    {
+      icon: (
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 6v6l4 2" />
+        </svg>
+      ),
+      label: t('contact.hoursLabel'),
+      value: t('contact.hoursValue'),
+    },
+  ];
+
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -72,11 +75,11 @@ export default function ContactPage() {
       <section className={styles.hero}>
         <div className={styles.heroContent}>
           <ScrollReveal direction="up">
-            <h1 className={styles.heroTitle}>Get In Touch</h1>
+            <h1 className={styles.heroTitle}>{t('contact.heroTitle')}</h1>
           </ScrollReveal>
           <ScrollReveal direction="up" delay={0.2}>
             <p className={styles.heroSubtitle}>
-              Have questions about Larimar City & Resort? Our team is here to help you find your perfect Caribbean home.
+              {t('contact.heroSubtitle')}
             </p>
           </ScrollReveal>
         </div>
@@ -89,17 +92,17 @@ export default function ContactPage() {
             {/* Left: Form */}
             <ScrollReveal direction="left">
               <div className={styles.formCard}>
-                <h2 className={styles.formTitle}>Send Us a Message</h2>
-                <p className={styles.formSubtitle}>Fill out the form below and we will get back to you within 24 hours.</p>
+                <h2 className={styles.formTitle}>{t('contact.formTitle')}</h2>
+                <p className={styles.formSubtitle}>{t('contact.formSubtitle')}</p>
                 <form className={styles.form} onSubmit={handleSubmit}>
                   <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor="name">Full Name</label>
+                    <label className={styles.label} htmlFor="name">{t('contact.fullName')}</label>
                     <input
                       id="name"
                       name="name"
                       type="text"
                       className={styles.input}
-                      placeholder="John Doe"
+                      placeholder={t('contact.fullNamePlaceholder')}
                       value={form.name}
                       onChange={handleChange}
                       required
@@ -107,33 +110,33 @@ export default function ContactPage() {
                   </div>
                   <div className={styles.formRow}>
                     <div className={styles.formGroup}>
-                      <label className={styles.label} htmlFor="email">Email Address</label>
+                      <label className={styles.label} htmlFor="email">{t('contact.emailAddress')}</label>
                       <input
                         id="email"
                         name="email"
                         type="email"
                         className={styles.input}
-                        placeholder="john@example.com"
+                        placeholder={t('contact.emailPlaceholder')}
                         value={form.email}
                         onChange={handleChange}
                         required
                       />
                     </div>
                     <div className={styles.formGroup}>
-                      <label className={styles.label} htmlFor="phone">Phone Number</label>
+                      <label className={styles.label} htmlFor="phone">{t('contact.phoneNumber')}</label>
                       <input
                         id="phone"
                         name="phone"
                         type="tel"
                         className={styles.input}
-                        placeholder="+1 (555) 000-0000"
+                        placeholder={t('contact.phonePlaceholder')}
                         value={form.phone}
                         onChange={handleChange}
                       />
                     </div>
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor="interest">Property Interest</label>
+                    <label className={styles.label} htmlFor="interest">{t('contact.propertyInterest')}</label>
                     <select
                       id="interest"
                       name="interest"
@@ -141,19 +144,19 @@ export default function ContactPage() {
                       value={form.interest}
                       onChange={handleChange}
                     >
-                      <option value="Any">Any Property Type</option>
-                      <option value="Apartment">Apartment</option>
-                      <option value="Villa">Villa</option>
-                      <option value="Townhouse">Townhouse</option>
+                      <option value="Any">{t('contact.anyPropertyType')}</option>
+                      <option value="Apartment">{t('contact.apartment')}</option>
+                      <option value="Villa">{t('contact.villa')}</option>
+                      <option value="Townhouse">{t('contact.townhouse')}</option>
                     </select>
                   </div>
                   <div className={styles.formGroup}>
-                    <label className={styles.label} htmlFor="message">Message</label>
+                    <label className={styles.label} htmlFor="message">{t('contact.message')}</label>
                     <textarea
                       id="message"
                       name="message"
                       className={styles.textarea}
-                      placeholder="Tell us about what you're looking for..."
+                      placeholder={t('contact.messagePlaceholder')}
                       rows={5}
                       value={form.message}
                       onChange={handleChange}
@@ -161,7 +164,7 @@ export default function ContactPage() {
                     />
                   </div>
                   <Button variant="primary" size="lg" onClick={handleSubmit}>
-                    Send Message
+                    {t('contact.sendMessage')}
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                       <path d="M14 2L7 9M14 2l-4 12-3-5-5-3 12-4z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
@@ -192,13 +195,13 @@ export default function ContactPage() {
                       <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z" />
                       <circle cx="12" cy="10" r="3" />
                     </svg>
-                    <span className={styles.mapText}>Punta Cana, Dominican Republic</span>
+                    <span className={styles.mapText}>{t('contact.mapText')}</span>
                   </div>
                 </div>
 
                 {/* Social Links */}
                 <div className={styles.socialSection}>
-                  <h3 className={styles.socialTitle}>Follow Us</h3>
+                  <h3 className={styles.socialTitle}>{t('contact.followUs')}</h3>
                   <div className={styles.socialLinks}>
                     <a href="#" className={styles.socialLink} aria-label="Facebook">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -235,9 +238,9 @@ export default function ContactPage() {
         <div className={styles.container}>
           <ScrollReveal direction="up">
             <div className={styles.faqHeader}>
-              <h2 className={styles.sectionTitle}>Frequently Asked Questions</h2>
+              <h2 className={styles.sectionTitle}>{t('contact.faqTitle')}</h2>
               <p className={styles.sectionSubtitle}>
-                Find answers to common questions about Larimar City & Resort.
+                {t('contact.faqSubtitle')}
               </p>
             </div>
           </ScrollReveal>
@@ -254,12 +257,12 @@ export default function ContactPage() {
         <div className={styles.container}>
           <ScrollReveal direction="up">
             <div className={styles.ctaInner}>
-              <h2 className={styles.ctaTitle}>Schedule a Visit</h2>
+              <h2 className={styles.ctaTitle}>{t('contact.scheduleVisit')}</h2>
               <p className={styles.ctaText}>
-                Experience Larimar City & Resort firsthand. Book a private tour and discover your future Caribbean home.
+                {t('contact.scheduleVisitText')}
               </p>
               <Button href="/contact" variant="gold" size="lg">
-                Book Your Visit
+                {t('contact.bookYourVisit')}
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                   <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
