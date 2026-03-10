@@ -1,0 +1,127 @@
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-radius: var(--border-radius-pill);
+  cursor: pointer;
+  overflow: hidden;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+
+.btnText {
+  position: relative;
+  z-index: 1;
+}
+
+.btnShine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.btn:hover .btnShine {
+  left: 100%;
+}
+
+/* Sizes */
+.btn--sm {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.75rem;
+}
+
+.btn--md {
+  padding: 0.85rem 2.2rem;
+  font-size: 0.8rem;
+}
+
+.btn--lg {
+  padding: 1.1rem 3rem;
+  font-size: 0.85rem;
+}
+
+/* Variants */
+.btn--primary {
+  background: var(--gradient-gold);
+  color: var(--color-white);
+  box-shadow: var(--shadow-gold);
+}
+
+.btn--primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(183, 157, 82, 0.4);
+}
+
+.btn--secondary {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--secondary:hover {
+  background: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-blue);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.btn--outline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn--outline-dark {
+  background: transparent;
+  color: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.btn--outline-dark:hover {
+  background: var(--color-secondary);
+  color: var(--color-white);
+  transform: translateY(-2px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-gold);
+  padding-left: 0;
+  padding-right: 0;
+  border-radius: 0;
+}
+
+.btn--ghost::after {
+  content: ' →';
+  transition: transform var(--duration-fast) ease;
+  display: inline-block;
+}
+
+.btn--ghost:hover::after {
+  transform: translateX(4px);
+}
+
+.btn--ghost:hover {
+  color: var(--color-gold-dark);
+}
