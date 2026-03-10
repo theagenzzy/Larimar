@@ -20,6 +20,10 @@ export const metadata = {
   description:
     "Discover luxury living in Punta Cana. 22,000+ homes, smart technology, sustainable design, and world-class amenities in the Caribbean's first smart city.",
   themeColor: "#004274",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
 };
 
 export default function RootLayout({ children }) {
